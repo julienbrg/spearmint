@@ -8,7 +8,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 // Change this to your own Infura project id: https://infura.io/register
-const INFURA_PROJECT_ID = "defba93b47f748f09fcead8282b9e58e";
+const INFURA_PROJECT_ID = "85c7342e76ff4abdba62b31c07c53499";
 const config = {
   readOnlyChainId: Mainnet.chainId,
   readOnlyUrls: {
