@@ -72,15 +72,18 @@ function App() {
 
   function getAccessToken() {
     // Get your own API token at https://web3.storage/account/
-    return process.env.REACT_APP_WEB3STORAGE_TOKEN;
-    console.log("web3storage token: ", process.env.REACT_APP_WEB3STORAGE_TOKEN);
 
+    console.log("getAccessToken ✅");
+    console.log("process.env.REACT_APP_WEB3STORAGE_TOKEN = ", process.env.REACT_APP_WEB3STORAGE_TOKEN);
+
+    return process.env.REACT_APP_WEB3STORAGE_TOKEN;
+    // return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEVFYkNDMTBGMDE2MUM1YzU4YzE5MmM3RjgxZmIzRjVGNDhmZDAwQkYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDgyOTU2NDA5NzcsIm5hbWUiOiJTcGVhcm1pbnQifQ.duFDn6u1LA7dYPFLZDI6cEvbfFEoS272PvdC4nT6U6g";
+    
   }
   
   function makeStorageClient() {
     console.log("makeStorageClient ✅ ");
-    // return new Web3Storage({ token: getAccessToken() });
-    return new Web3Storage({ token: "<YOUR_OWN_WEBSTORAGE_TOKEN_GOES_HERE>" });
+    return new Web3Storage({ token: getAccessToken() });
   }
 
   function makeFileObjects() {
@@ -100,14 +103,11 @@ function App() {
   }
 
   async function storeFiles(files) {
-    // console.log("storeFiles ✅ ");
-    // const client = makeStorageClient();
-    // const cid = await client.put(files);
-    // console.log('stored files with cid:', cid);
-    // return cid;
-
     console.log("storeFiles ✅ ");
-    console.log('worked ✅');
+    const client = makeStorageClient();
+    const cid = await client.put(files);
+    console.log('stored files with cid:', cid);
+    return cid;
   }
 
   async function play() {
@@ -128,7 +128,7 @@ function App() {
           Mint
         </Button>
         <Button onClick={getAccessToken}>
-          Get access token
+          getAccessToken
         </Button>
         <p></p>
         <Link href="https://github.com/julienbrg/spearmint">
