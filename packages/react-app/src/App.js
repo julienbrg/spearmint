@@ -9,6 +9,8 @@ import logo from "./lode-runner.png";
 import { addresses, abis } from "@my-app/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
 
+import { Web3Storage } from 'web3.storage/dist/bundle.esm.min.js';
+
 function WalletButton() {
   const [rendered, setRendered] = useState("");
 
@@ -68,6 +70,53 @@ function App() {
     }
   }, [loading, subgraphQueryError, data]);
 
+  // TO DO: fix .env
+  function getAccessToken() {
+    // Get your own API token at https://web3.storage/account/
+
+    console.log("getAccessToken ✅")
+    console.log("process.env.REACT_APP_WEB3STORAGE_TOKEN = ", process.env.REACT_APP_WEB3STORAGE_TOKEN, "😿")
+
+    // return process.env.REACT_APP_WEB3STORAGE_TOKEN;
+    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEVFYkNDMTBGMDE2MUM1YzU4YzE5MmM3RjgxZmIzRjVGNDhmZDAwQkYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDgyOTU2NDA5NzcsIm5hbWUiOiJTcGVhcm1pbnQifQ.duFDn6u1LA7dYPFLZDI6cEvbfFEoS272PvdC4nT6U6g";
+    
+  }
+  
+  function makeStorageClient() {
+    console.log("makeStorageClient ✅ ");
+    return new Web3Storage({ token: getAccessToken() });
+  }
+
+  function makeFileObjects() {
+    console.log("makeFileObjects ✅ ");
+    // You can create File objects from a Blob of binary data
+    // see: https://developer.mozilla.org/en-US/docs/Web/API/Blob
+    // Here we're just storing a JSON object, but you can store images,
+    // audio, or whatever you want!
+    const obj = { game: 'Lode Runner' };
+    const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+  
+    const files = [
+      new File(['contents-of-file-1'], 'plain-utf8.txt'),
+      new File([blob], 'hello.json')
+    ];
+    return files;
+  }
+
+  async function storeFiles(files) {
+    console.log("storeFiles ✅ ");
+    const client = makeStorageClient();
+    const cid = await client.put(files);
+    console.log('stored files with CID ✅: ', cid, "🎉");
+    return cid;
+  }
+
+  async function play() {
+    console.log("Hello! 👋 ");
+    makeStorageClient();
+    storeFiles(makeFileObjects());
+  }
+
   return (
     <Container>
       <Header>
@@ -76,9 +125,12 @@ function App() {
       <Body>
         <Image src={logo} alt="lode-runner" />
         <p></p>
-        <Button>
+        <Button onClick={play}>
           Mint
         </Button>
+        {/* <Button onClick={getAccessToken}>
+          getAccessToken
+        </Button> */}
         <p></p>
         <Link href="https://github.com/julienbrg/spearmint">
           Github repo
