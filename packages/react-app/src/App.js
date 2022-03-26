@@ -9,6 +9,8 @@ import logo from "./lode-runner.png";
 import { addresses, abis } from "@my-app/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
 
+import { Web3Storage } from 'web3.storage/dist/bundle.esm.min.js';
+
 function WalletButton() {
   const [rendered, setRendered] = useState("");
 
