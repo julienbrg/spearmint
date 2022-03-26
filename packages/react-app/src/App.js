@@ -4,7 +4,7 @@ import { shortenAddress, useCall, useEthers, useLookupAddress } from "@usedapp/c
 import React, { useEffect, useState } from "react";
 
 import { Body, Button, Container, Header, Image, Link } from "./components";
-import logo from "./ethereumLogo.png";
+import logo from "./lode-runner.png";
 
 import { addresses, abis } from "@my-app/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
@@ -74,15 +74,15 @@ function App() {
         <WalletButton />
       </Header>
       <Body>
-        <Image src={logo} alt="ethereum-logo" />
-        <p>
-          Edit <code>packages/react-app/src/App.js</code> and save to reload.
-        </p>
-        <Link href="https://reactjs.org">
-          Learn React
+        <Image src={logo} alt="lode-runner" />
+        <p></p>
+        <Button>
+          Mint
+        </Button>
+        <p></p>
+        <Link href="https://github.com/julienbrg/spearmint">
+          Github repo
         </Link>
-        <Link href="https://usedapp.io/">Learn useDapp</Link>
-        <Link href="https://thegraph.com/docs/quick-start">Learn The Graph</Link>
       </Body>
     </Container>
   );

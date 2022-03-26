@@ -16,7 +16,7 @@ export const Button = styled.button`
   border-radius: 8px;
   color: #282c34;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 24px;
   margin: 0px 20px;
   padding: 12px 24px;
   text-align: center;
@@ -24,7 +24,7 @@ export const Button = styled.button`
 `;
 
 export const Container = styled.div`
-  background-color: #282c34;
+  background-color: #000000;
   display: flex;
   flex-direction: column;
   height: calc(100vh);
@@ -32,7 +32,7 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   align-items: center;
-  background-color: #282c34;
+  background-color: #000000;
   color: white;
   display: flex;
   flex-direction: row;
@@ -50,6 +50,7 @@ export const Link = styled.a.attrs({
   target: "_blank",
   rel: "noopener noreferrer",
 })`
-  color: #61dafb;
+  color: #800080;
   margin-top: 8px;
+  font-size: calc(2px + 2vmin);
 `;
