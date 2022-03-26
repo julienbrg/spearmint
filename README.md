@@ -11,4 +11,4 @@ yarn react-app:start
 # Features
 
 - [Create ETH App](https://github.com/paulrberg/create-eth-app)
-- [NFT Storage](https://nft.storage/)
+- [Web3 Storage](https://web3.storage/)
