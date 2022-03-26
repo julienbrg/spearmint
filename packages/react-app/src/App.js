@@ -51,12 +51,14 @@ function WalletButton() {
 
 function App() {
 
-  const { error: contractCallError, value: ownerOf } =
-    useCall({
-       contract: new Contract(addresses.nft, abis.erc721),
-       method: "ownerOf",
-       args: ["0"],
-    }) ?? {};
+  const { value: bal } =
+  useCall({
+      contract: new Contract(addresses.nft, abis.erc721),
+      method: "balanceOf",
+      args: ["0xbFBaa5a59e3b6c06afF9c975092B8705f804Fa1c"],
+  }) ?? {};
+
+  // https://testnets.opensea.io/assets/0x61681514eA040d19dC4279301aDC10bf654D886A/1
 
   // TO DO: fix .env
   function getAccessToken() {
@@ -105,15 +107,18 @@ function App() {
       </Header>
       <Body>
         <Image src={logo} alt="lode-runner" />
-        <p></p>
+        <p>NFT contract address: < br/><strong>{addresses.nft}</strong></p>
         <div>
-          {contractCallError && <p>Sorry, something went wrong. 😿</p>}
-          {ownerOf && <p>Owner of ID 0: {ownerOf}</p>}
+          {bal && <p>You own <strong>{bal.toString()}</strong> of these. </p>}          
         </div>
+        <Link href="https://testnets.opensea.io/">
+          Check on OpenSea
+        </Link>
+        <p></p>
         <Button onClick={play}>
           Mint
         </Button>
-        <p></p>
+        
         <Link href="https://github.com/julienbrg/spearmint">
           Github repo
         </Link>
