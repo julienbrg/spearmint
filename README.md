@@ -1,12 +1,14 @@
 The most basic minter you can find.
 
-Click on the 'Mint' button to mint your NFT.
-
 # Test
 
-```
+```shell
 yarn react-app:start
 ```
+
+# Usage
+
+Click on the 'Mint' button to mint your NFT.
 
 # Features
 
