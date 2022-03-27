@@ -61,7 +61,7 @@ function App() {
   // https://testnets.opensea.io/assets/0x61681514ea040d19dc4279301adc10bf654d886a/10
   // https://ipfs.io/ipfs/bafybeib3shisi64rroc2oedae2ehtzmtua2l4yhatiexihs6cogllnwqvm/lode-runner.json
 
-  // TO DO: fix .env
+  // TODO: Fix .env
   function getAccessToken() {
     console.log("getAccessToken ✅")
     console.log("process.env.REACT_APP_WEB3STORAGE_TOKEN = ", process.env.REACT_APP_WEB3STORAGE_TOKEN, "😿")
@@ -118,14 +118,18 @@ function App() {
     const client = makeStorageClient();
     const cid = await client.put(files);
     console.log('stored files with CID ✅: ', cid, "🎉");
-    console.log('token URI: ',"https://ipfs.io/ipfs/",cid,"/","lode-runner.json")
     return cid;
   }
 
-  async function play() {
+  async function mint() {
     console.log("Hello! 👋 ");
     makeStorageClient();
-    storeFiles(makeFileObjects());
+    const uri = await storeFiles(makeFileObjects()) + "/lode-runner.json";
+    console.log("uri: ", uri );
+    
+    // TODO: safeMint call 
+    // https://usedapp-docs.netlify.app/docs/guides/typed-contracts 
+
   }
 
   return (
@@ -143,7 +147,7 @@ function App() {
           Check on OpenSea
         </Link>
         <p></p>
-        <Button onClick={play}>
+        <Button onClick={mint}>
           Mint
         </Button>
         
