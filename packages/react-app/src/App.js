@@ -58,7 +58,8 @@ function App() {
       args: ["0xbFBaa5a59e3b6c06afF9c975092B8705f804Fa1c"],
   }) ?? {};
 
-  // https://testnets.opensea.io/assets/0x61681514eA040d19dC4279301aDC10bf654D886A/1
+  // https://testnets.opensea.io/assets/0x61681514eA040d19dC4279301aDC10bf654D886A/5
+  // https://ipfs.io/ipfs/bafybeietzt6xkgcdkosizbbgz2hqya2k6vrfkkx6wzvbea2lzhfh4qolgi/5.json 
 
   // TO DO: fix .env
   function getAccessToken() {
@@ -76,12 +77,38 @@ function App() {
 
   function makeFileObjects() {
     console.log("makeFileObjects ✅ ");
-    const obj = { game: 'Lode Runner' };
+    const obj = {
+      "name": "Lode Runner #1",
+      "author": "Julien",
+      "description": "I'm a Lode Runner player since the age of six. With this amazing unique screenshot, I wanted to express the harsh of the struggle against the ever-growing threat of machines taking over our lives, a super important issue that mankind is facing today. My character is stuck. Let's just reboot everything.",
+      "size": "708 by 762 pixels",
+      "media_format": "jpg",
+      "image": "https://bafkreifmcnnbun3avt2pigr2m2e46pqtftlilcz7a3cn2zhgzvppttgpm4.ipfs.dweb.link",
+      "license": "无", // add the license here
+      "attributes": [
+        {
+          "trait_type": "Minted on",
+          "value": "Spearmint"
+        },
+        {
+          "trait_type": "License type",
+          "value": "无" // add the license type here e.g. "Public use for all purposes + Right to adapt + Right to add a logo + Merchandising rights"
+        },
+        {
+          "trait_type": "Resale rights",
+          "value": "8"
+        },
+        {
+          "trait_type": "View licence",
+          "value": "无" // add the license here
+        }
+      ]
+    };
     const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
   
     const files = [
       new File(['contents-of-file-1'], 'plain-utf8.txt'),
-      new File([blob], 'hello.json')
+      new File([blob], 'lode-runner.json')
     ];
     return files;
   }
@@ -91,6 +118,7 @@ function App() {
     const client = makeStorageClient();
     const cid = await client.put(files);
     console.log('stored files with CID ✅: ', cid, "🎉");
+    console.log('token URI: ', "https://ipfs.io/ipfs/", cid, '/', 'lode-runner.json' )
     return cid;
   }
 
@@ -111,7 +139,7 @@ function App() {
         <div>
           {bal && <p>You own <strong>{bal.toString()}</strong> of these. </p>}          
         </div>
-        <Link href="https://testnets.opensea.io/">
+        <Link href="https://testnets.opensea.io/assets/0x61681514eA040d19dC4279301aDC10bf654D886A/5">
           Check on OpenSea
         </Link>
         <p></p>
