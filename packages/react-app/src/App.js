@@ -58,8 +58,8 @@ function App() {
       args: ["0xbFBaa5a59e3b6c06afF9c975092B8705f804Fa1c"],
   }) ?? {};
 
-  // https://testnets.opensea.io/assets/0x61681514eA040d19dC4279301aDC10bf654D886A/5
-  // https://ipfs.io/ipfs/bafybeietzt6xkgcdkosizbbgz2hqya2k6vrfkkx6wzvbea2lzhfh4qolgi/5.json 
+  // https://testnets.opensea.io/assets/0x61681514ea040d19dc4279301adc10bf654d886a/10
+  // https://ipfs.io/ipfs/bafybeib3shisi64rroc2oedae2ehtzmtua2l4yhatiexihs6cogllnwqvm/lode-runner.json
 
   // TO DO: fix .env
   function getAccessToken() {
@@ -118,7 +118,7 @@ function App() {
     const client = makeStorageClient();
     const cid = await client.put(files);
     console.log('stored files with CID ✅: ', cid, "🎉");
-    console.log('token URI: ', "https://ipfs.io/ipfs/", cid, '/', 'lode-runner.json' )
+    console.log('token URI: ',"https://ipfs.io/ipfs/",cid,"/","lode-runner.json")
     return cid;
   }
 
