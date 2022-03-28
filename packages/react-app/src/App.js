@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import { Body, Button, Container, Header, Image, Link } from "./components";
 import logo from "./lode-runner.png";
+import { Mint } from "./components/mint.tsx";
 
 import { addresses, abis } from "@my-app/contracts";
 // import GET_TRANSFERS from "./graphql/subgraph";
@@ -57,6 +58,7 @@ function App() {
       method: "balanceOf",
       args: ["0xbFBaa5a59e3b6c06afF9c975092B8705f804Fa1c"],
   }) ?? {};
+
 
   // https://testnets.opensea.io/assets/0x61681514ea040d19dc4279301adc10bf654d886a/10
   // https://ipfs.io/ipfs/bafybeib3shisi64rroc2oedae2ehtzmtua2l4yhatiexihs6cogllnwqvm/lode-runner.json
@@ -126,10 +128,9 @@ function App() {
     makeStorageClient();
     const uri = await storeFiles(makeFileObjects()) + "/lode-runner.json";
     console.log("uri: ", uri );
-    
     // TODO: safeMint call 
     // https://usedapp-docs.netlify.app/docs/guides/typed-contracts 
-
+    await Mint(uri);
   }
 
   return (
